@@ -14,7 +14,5 @@ public class TutorialApplication {
 		SpringApplication.run(TutorialApplication.class, args);
 
 		logger.debug("Mi mensaje debug");
-		logger.trace("Mi mensaje trace");
-		logger.info("Mi mensaje info");
 	}
 }
