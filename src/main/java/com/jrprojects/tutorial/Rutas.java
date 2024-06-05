@@ -3,10 +3,8 @@ package com.jrprojects.tutorial;
 import com.jrprojects.tutorial.models.Libro;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
-import java.util.Objects;
 
 @RestController
 public class Rutas {
@@ -35,5 +33,11 @@ public class Rutas {
         if (libro.nombre == null) throw new IllegalArgumentException("Microservicio fallado");
 
         return "Libro guardado...";
+    }
+
+    @GetMapping ("/Saludar")
+    @ResponseStatus (value = HttpStatus.MOVED_PERMANENTLY, reason = "Fue movida a la versión 2 de la API")
+    String miSegundaRutaConStatus() {
+        return "Aprendiendo statuses http en Springboot";
     }
 }
