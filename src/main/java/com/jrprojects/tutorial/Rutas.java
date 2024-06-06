@@ -70,6 +70,10 @@ public class Rutas {
                 .body("{\"name\":\"mary\"}");
     }
 
+    /**
+     * Por cada Map, se retorna un diccionario (Mapea un par clave-valor)
+     * @return un diccionario "user" que contiene otro diccionario que incluye age y name
+     */
     @GetMapping ("/userData/v2")
     public Map<String, Map<String, Object>> getUserDatav2() {
         return Map.of("user", Map.of("name", "mary", "age", 25));
