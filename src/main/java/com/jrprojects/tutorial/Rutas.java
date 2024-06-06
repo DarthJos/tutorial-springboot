@@ -1,6 +1,7 @@
 package com.jrprojects.tutorial;
 
 import com.jrprojects.tutorial.models.Libro;
+import com.jrprojects.tutorial.models.UserData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -8,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
-import java.util.Objects;
 
 @RestController
 public class Rutas {
@@ -62,6 +62,10 @@ public class Rutas {
         throw new NullPointerException("la clave del usuario es password123 y no debería leerse en postman");
     }
 
+    /**
+     * Retorna un Json después de crear una respuesta con header y body
+     * @return un diccionario "user" que contiene otro diccionario que incluye age y name
+     */
     @GetMapping ("/userData")
     public ResponseEntity<String> getUserData(){
         return ResponseEntity
@@ -75,7 +79,16 @@ public class Rutas {
      * @return un diccionario "user" que contiene otro diccionario que incluye age y name
      */
     @GetMapping ("/userData/v2")
-    public Map<String, Map<String, Object>> getUserDatav2() {
+    public Map<String, Map<String, Object>> getUserDataV2() {
         return Map.of("user", Map.of("name", "mary", "age", 25));
     }
+
+    /**
+     * @return un Json tan solo mediante el uso de una clase modelo (UserData)
+     */
+    @GetMapping ("/userData/v3")
+    public UserData getUserDataV3() {
+        return new UserData("Josimar", 33);
+    }
+
 }
