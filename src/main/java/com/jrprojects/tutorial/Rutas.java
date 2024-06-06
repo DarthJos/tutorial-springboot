@@ -88,7 +88,7 @@ public class Rutas {
      */
     @GetMapping ("/userData/v3")
     public UserData getUserDataV3() {
-        return new UserData("Josimar", 33);
+        return new UserData("Josimar", 33, "Fortin, Ver, MX");
     }
 
 }
