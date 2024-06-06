@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+import java.util.Objects;
+
 @RestController
 public class Rutas {
 
@@ -57,5 +60,18 @@ public class Rutas {
     @GetMapping ("/calcular/{numero}")
     public int getCalculo(@PathVariable int numero) {
         throw new NullPointerException("la clave del usuario es password123 y no debería leerse en postman");
+    }
+
+    @GetMapping ("/userData")
+    public ResponseEntity<String> getUserData(){
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .header("Content-Type", "application/json")
+                .body("{\"name\":\"mary\"}");
+    }
+
+    @GetMapping ("/userData/v2")
+    public Map<String, Map<String, Object>> getUserDatav2() {
+        return Map.of("user", Map.of("name", "mary", "age", 25));
     }
 }
