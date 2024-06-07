@@ -16,8 +16,12 @@ import java.util.Map;
 @RestController
 public class Rutas {
 
-    private final OrderService orderService = new OrderService();
     private final Logger logger = LoggerFactory.getLogger(Rutas.class);
+    private final OrderService orderService;
+
+    public Rutas(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @GetMapping ("/hola")
     String miPrimeraRuta() {
