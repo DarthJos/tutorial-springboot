@@ -1,18 +1,22 @@
 package com.jrprojects.tutorial;
 
 import com.jrprojects.tutorial.models.Libro;
+import com.jrprojects.tutorial.models.Producto;
 import com.jrprojects.tutorial.models.UserData;
+import com.jrprojects.tutorial.services.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
 public class Rutas {
 
+    private final OrderService orderService = new OrderService();
     private final Logger logger = LoggerFactory.getLogger(Rutas.class);
 
     @GetMapping ("/hola")
@@ -91,4 +95,9 @@ public class Rutas {
         return new UserData("Josimar", 33, "Fortin, Ver, MX");
     }
 
+    @PostMapping ("/order")
+    public String crearOrden(@RequestBody List<Producto> products) {
+        orderService.saveOrder(products);
+        return "Orden creada...";
+    }
 }
