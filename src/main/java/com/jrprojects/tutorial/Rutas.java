@@ -6,6 +6,7 @@ import com.jrprojects.tutorial.models.UserData;
 import com.jrprojects.tutorial.myBeans.MiBean;
 import com.jrprojects.tutorial.myBeans.MiComponente;
 import com.jrprojects.tutorial.services.OrderService;
+import com.jrprojects.tutorial.services.OrderServiceable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,12 @@ import java.util.Map;
 public class Rutas {
 
     private final Logger logger = LoggerFactory.getLogger(Rutas.class);
-    private final OrderService orderService;
+    private final OrderServiceable orderService;
     private final MiBean miBean;
     @Autowired
     private MiComponente miComponente;      // <-- Asi tmb se pueden inyectar dependencias sin tener que meterlas explicitamente en el constructor
 
-    public Rutas(OrderService orderService, MiBean miBean) {
+    public Rutas(OrderServiceable orderService, MiBean miBean) {
         this.orderService = orderService;
         this.miBean = miBean;
     }
