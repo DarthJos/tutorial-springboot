@@ -4,9 +4,11 @@ import com.jrprojects.tutorial.models.Libro;
 import com.jrprojects.tutorial.models.Producto;
 import com.jrprojects.tutorial.models.UserData;
 import com.jrprojects.tutorial.myBeans.MiBean;
+import com.jrprojects.tutorial.myBeans.MiComponente;
 import com.jrprojects.tutorial.services.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,8 @@ public class Rutas {
     private final Logger logger = LoggerFactory.getLogger(Rutas.class);
     private final OrderService orderService;
     private final MiBean miBean;
+    @Autowired
+    private MiComponente miComponente;      // <-- Asi tmb se pueden inyectar dependencias sin tener que meterlas explicitamente en el constructor
 
     public Rutas(OrderService orderService, MiBean miBean) {
         this.orderService = orderService;
@@ -113,5 +117,11 @@ public class Rutas {
 
         miBean.saludar();
         return "Completado...";
+    }
+
+    @GetMapping ("/micomponente")
+    public String llamarComponente() {
+        miComponente.saludarDesdeComponente();
+        return "Llamado a miComponente completad...";
     }
 }
