@@ -3,6 +3,7 @@ package com.jrprojects.tutorial;
 import com.jrprojects.tutorial.models.Libro;
 import com.jrprojects.tutorial.models.Producto;
 import com.jrprojects.tutorial.models.UserData;
+import com.jrprojects.tutorial.myBeans.MiBean;
 import com.jrprojects.tutorial.services.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +19,11 @@ public class Rutas {
 
     private final Logger logger = LoggerFactory.getLogger(Rutas.class);
     private final OrderService orderService;
+    private final MiBean miBean;
 
-    public Rutas(OrderService orderService) {
+    public Rutas(OrderService orderService, MiBean miBean) {
         this.orderService = orderService;
+        this.miBean = miBean;
     }
 
     @GetMapping ("/hola")
@@ -103,5 +106,12 @@ public class Rutas {
     public String crearOrden(@RequestBody List<Producto> products) {
         orderService.saveOrder(products);
         return "Orden creada...";
+    }
+
+    @GetMapping ("/mibean")
+    public String llamarBean () {
+
+        miBean.saludar();
+        return "Completado...";
     }
 }
