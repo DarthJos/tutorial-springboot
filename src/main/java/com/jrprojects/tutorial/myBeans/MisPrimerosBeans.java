@@ -18,7 +18,7 @@ public class MisPrimerosBeans {
 
     @Bean
     public OrderServiceable instanciarOrderService() {
-        boolean esProduccion = false;
+        boolean esProduccion = true;
 
         if (esProduccion) {
             return new OrderService();
