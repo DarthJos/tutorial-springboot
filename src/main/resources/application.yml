@@ -3,3 +3,5 @@ logging:
     com.jrprojects.tutorial: TRACE
 
 server.error.include-message: always
+
+management.endpoints.web.exposure.include: '*'
