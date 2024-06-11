@@ -1,11 +1,11 @@
-package com.jrprojects.tutorial;
+package com.jrprojects.tutorial.controllers;
 
 import com.jrprojects.tutorial.models.Libro;
 import com.jrprojects.tutorial.models.Producto;
 import com.jrprojects.tutorial.models.UserData;
 import com.jrprojects.tutorial.myBeans.MiBean;
 import com.jrprojects.tutorial.myBeans.MiComponente;
-import com.jrprojects.tutorial.services.OrderService;
+import com.jrprojects.tutorial.services.MisOperaciones;
 import com.jrprojects.tutorial.services.OrderServiceable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,12 +24,24 @@ public class Rutas {
     private final Logger logger = LoggerFactory.getLogger(Rutas.class);
     private final OrderServiceable orderService;
     private final MiBean miBean;
+    private final MisOperaciones misOperaciones;
     @Autowired
-    private MiComponente miComponente;      // <-- Asi tmb se pueden inyectar dependencias sin tener que meterlas explicitamente en el constructor
+    private MiComponente miComponente;      // <-- Forma deprecada de inyectar dependencias sin tener que meterlas explicitamente en el constructor
 
-    public Rutas(OrderServiceable orderService, MiBean miBean) {
+    public Rutas(OrderServiceable orderService, MiBean miBean, MisOperaciones misOperaciones) {
         this.orderService = orderService;
         this.miBean = miBean;
+        this.misOperaciones = misOperaciones;
+    }
+
+    @GetMapping ("/")
+    public Map<String, String> home() {
+        return new HashMap<>(){{put("message", "Hello from Homepage");}};
+    }
+
+    @GetMapping ("/factorial")
+    public Map<String, String> factorial(@RequestParam int numero){
+        return new HashMap<>() {{put("factorial", "" + misOperaciones.factorial(numero));}};
     }
 
     @GetMapping ("/hola")
