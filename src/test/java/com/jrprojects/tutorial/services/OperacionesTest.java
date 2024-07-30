@@ -1,7 +1,5 @@
-package services;
+package com.jrprojects.tutorial.services;
 
-import com.jrprojects.tutorial.services.MisOperaciones;
-import com.jrprojects.tutorial.services.Operaciones;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

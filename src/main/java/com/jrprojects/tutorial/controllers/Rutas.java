@@ -41,7 +41,12 @@ public class Rutas {
 
     @GetMapping ("/factorial")
     public Map<String, String> factorial(@RequestParam int numero){
-        return new HashMap<>() {{put("factorial", "" + misOperaciones.factorial(numero));}};
+        try {
+            return new HashMap<>() {{put("factorial", "" + misOperaciones.factorial(numero));}};
+        }
+        catch (ArithmeticException e) {
+            return new HashMap<>() {{put("error", "operación invalida");}};
+        }
     }
 
     @GetMapping ("/hola")
