@@ -8,3 +8,8 @@ management.endpoints.web.exposure.include: '*'
 
 urls:
   database: "https://midatabase.com"
+
+db:
+  owner: "Josimar Reyes Campos"
+  corp: "JR Emperium"
+  project: "Springboot tutorial"
